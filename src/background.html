@@ -1,0 +1,21 @@
+<script>
+chrome.extension.onRequest.addListener(
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "received request from tab:" + sender.tab.url :
+                "received request from the extension");
+
+    if (request.greeting == "song-change"){
+        var notification = webkitNotifications.createNotification(
+                                request.art,
+                                request.song,
+                                "By " + request.artist + " on " +  request.album
+                            );
+        notification.show();
+        setTimeout(function(){notification.cancel();}, '10000');
+
+        sendResponse({farewell: "Notification successful"});
+    }
+    else{ sendResponse({}); }
+});
+</script>
