@@ -1,4 +1,5 @@
 var currentArtSRC;
+var polledArtSRC;
 
 function Request(artSRC) {
 	
@@ -12,12 +13,16 @@ function Request(artSRC) {
 }
 
 function CheckForChange() {
-	polledArtSRC = document.getElementsByClassName("playerBarArt")[0].getAttribute("src"); // assumes only 1 element of that class on the page
-	if(polledArtSRC != "" && polledArtSRC != currentArtSRC){
-		console.log("Pandora Notifications - Song Change");
-		currentArtSRC = polledArtSRC;
-		Request(polledArtSRC);
-	}
+	var polledArt = document.getElementsByClassName("playerBarArt")[0]; // assumes only 1 element of that class on the page
+		
+	if(polledArt != null){
+		var polledArtSRC = polledArt.getAttribute("src"); 
+		if(polledArtSRC != currentArtSRC){
+			console.log("Pandora Notifications - Song Change");
+			currentArtSRC = polledArtSRC;
+			Request(polledArtSRC);
+		}
+	}	
 }
 
 checkTimer = setInterval ( "CheckForChange()", 2000 );
