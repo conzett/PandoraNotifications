@@ -6,16 +6,20 @@ chrome.extension.onRequest.addListener(
                 "received request from the extension");
 
     if (request.greeting == "song-change"){
-        var notification = webkitNotifications.createNotification(
-                                request.art,
-                                request.song,
-                                "By " + request.artist + " on " +  request.album
-                            );
+		/* var url = 'notification.html?test=' + escape('Test');
+		 console.log(url);
+        var notification = webkitNotifications.createHTMLNotification(url); */
+		var notification = webkitNotifications.createNotification(
+			request.art,
+			request.song,
+			"By " + request.artist + " on " +  request.album
+		)
         notification.show();
         setTimeout(function(){notification.cancel();}, '10000');
 
-        sendResponse({farewell: "Notification successful"});
+        sendResponse({farewell: "Notification Successful"});
     }
     else{ sendResponse({}); }
 });
+
 </script>

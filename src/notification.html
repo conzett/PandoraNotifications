@@ -1,0 +1,16 @@
+<html>
+	<body style="background-color: black; color: white;">
+		<div id="target">Something</div>
+	</body>
+</html>
+
+<script>
+	function getParam( varname ) {
+	    varname = varname.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	    var regexS = "[\\?&]"+varname+"=([^&#]*)";
+	    var regex = new RegExp( regexS );
+	    var results = regex.exec( window.location.href );
+	    if( results == null ) return ""; else return results[1];
+	}
+	document.getElementById('target').innerHTML = getParam('test');
+</script>
