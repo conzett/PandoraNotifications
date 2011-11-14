@@ -10,7 +10,7 @@
   "background_page": "src/background.html",
   "content_scripts": [
     {
-      "matches": ["http://www.pandora.com/*"],
+      "matches": ["http://www.pandora.com/*", "https://www.pandora.com/*"],
       "js": ["src/pandora-notification.js"],
       "run_at": "document_end"
     }
