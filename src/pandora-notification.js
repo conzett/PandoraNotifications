@@ -19,6 +19,9 @@ function CheckForChange() {
 		var polledArtSRC = polledArt.getAttribute("src"); 
 		if(polledArtSRC != currentArtSRC){
 			console.log("Pandora Notifications - Song Change");
+			if(polledArtSRC.charAt(0) === '/'){
+				polledArtSRC = "http://www.pandora.com" + polledArtSRC; //handle images with local paths
+			}
 			currentArtSRC = polledArtSRC;
 			Request(polledArtSRC);
 		}
