@@ -1,14 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="1138.23">
-  <style type="text/css">
-  </style>
-</head>
-<body>
+<head><title>Pandora Notification Options</title></head>
+<script type="text/javascript">
+
+function save_options() {
+  var displayTime = document.getElementById("display-time").value;
+  localStorage["displayTime"] = displayTime;
+
+  // Update status to let user know options were saved.
+  var status = document.getElementById("status");
+  status.innerHTML = "Options Saved.";
+  setTimeout(function() {
+    status.innerHTML = "";
+  }, 750);
+}
+
+// Restores select box state to saved value from localStorage.
+function restore_options() {
+  var displayTime = localStorage["displayTime"];
+  if (!displayTime) {
+    return;
+  }
+  document.getElementById("display-time").value = displayTime;
+}
+
+</script>
+
+<body onload="restore_options()">
+
+<label for="display-time">Display Time</label>
+<input id="display-time" type="text"/>
+<p>Time (in seconds) the notification stays on screen.</p>
+
+<br>
+<button onclick="save_options()">Save</button>
 </body>
 </html>

@@ -15,7 +15,8 @@ chrome.extension.onRequest.addListener(
 			"By " + request.artist + " on " +  request.album
 		)
         notification.show();
-        setTimeout(function(){notification.cancel();}, '10000');
+        var time = (localStorage["displayTime"] * 1000);
+        setTimeout(function(){notification.cancel();}, time);
 
         sendResponse({farewell: "Notification Successful"});
     }
