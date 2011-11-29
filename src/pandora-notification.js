@@ -16,16 +16,19 @@ function CheckForChange() {
 	var polledArt = document.getElementsByClassName("playerBarArt")[0]; // assumes only 1 element of that class on the page
 		
 	if(polledArt != null){
-		var polledArtSRC = polledArt.getAttribute("src"); 
+		var polledArtSRC = polledArt.getAttribute("src");
+		if(polledArtSRC.charAt(0) === '/'){
+				polledArtSRC = "http://www.pandora.com" + polledArtSRC; //handle images with local paths
+		}
 		if(polledArtSRC != currentArtSRC){
 			console.log("Pandora Notifications - Song Change");
-			if(polledArtSRC.charAt(0) === '/'){
-				polledArtSRC = "http://www.pandora.com" + polledArtSRC; //handle images with local paths
-			}
+			
 			currentArtSRC = polledArtSRC;
 			Request(polledArtSRC);
 		}
 	}	
 }
 
-checkTimer = setInterval ( "CheckForChange()",  (localStorage["pollInterval"] * 1000) );
+var pollInterval = (localStorage["pollInterval"] * 1000);
+
+checkTimer = setInterval ( "CheckForChange()",  pollInterval);
