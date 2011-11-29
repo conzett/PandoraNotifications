@@ -1,5 +1,5 @@
 <html>
-	<body style="background-color: black; color: white;">
+	<body style="background: #333333; color: white; font-family: arial, helvetica, sans-serif; margin: 0; padding: 8px; ">
 		<div id="target">Something</div>
 	</body>
 </html>
@@ -12,5 +12,9 @@
 	    var results = regex.exec( window.location.href );
 	    if( results == null ) return ""; else return results[1];
 	}
-	document.getElementById('target').innerHTML = getParam('test');
+
+	var content ='<p style=" line-height: 20px; margin: 0; text-shadow: 0px -2px 0px #000000; font-size:12px; "><img style="box-shadow: 1px 1px 4px 0px #000000; float:left; width:60px;" src="' + getParam('art') + '"/>'
+		+ unescape(getParam('song')) + '<br />by ' + unescape(getParam('artist')) + '<br />on ' + unescape(getParam('album')) + '<br /></p>';
+
+	document.getElementById('target').innerHTML = content;
 </script>

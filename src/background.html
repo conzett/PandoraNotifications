@@ -1,4 +1,7 @@
 <script>
+
+var pollInterval = localStorage["pollInterval"];
+
 chrome.extension.onRequest.addListener(
   function(request, sender, sendResponse) {
     console.log(sender.tab ?
@@ -6,18 +9,14 @@ chrome.extension.onRequest.addListener(
                 "received request from the extension");
 
     if (request.greeting == "song-change"){
-		/*var url = 'notification.html?test=' + escape('I have Been passed');
-        var notification = webkitNotifications.createHTMLNotification(url);*/
-		var notification = webkitNotifications.createNotification(
-			request.art,
-			request.song,
-			"By " + request.artist + " on " +  request.album
-		)
+		var url = 'notification.html?art=' + request.art + '&song=' + request.song + '&artist=' + request.artist + '&album=' +request.album; 
+        var notification = webkitNotifications.createHTMLNotification(url);
+        console.log("show notification");
         notification.show();
         var time = (localStorage["displayTime"] * 1000);
         setTimeout(function(){notification.cancel();}, time);
 
-        sendResponse({farewell: "Notification Successful"});
+        sendResponse({farewell: "Notification Successful", pollInterval: pollInterval});
     }
     else{ sendResponse({}); }
 });
