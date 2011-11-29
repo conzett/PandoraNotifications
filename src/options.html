@@ -3,8 +3,8 @@
 <script type="text/javascript">
 
 function save_options() {
-  var displayTime = document.getElementById("display-time").value;
-  localStorage["displayTime"] = displayTime;
+  localStorage["displayTime"] = document.getElementById("display-time").value;
+  localStorage["pollInterval"] = document.getElementById("poll-interval").value;
 
   // Update status to let user know options were saved.
   var status = document.getElementById("status");
@@ -16,11 +16,8 @@ function save_options() {
 
 // Restores select box state to saved value from localStorage.
 function restore_options() {
-  var displayTime = localStorage["displayTime"];
-  if (!displayTime) {
-    return;
-  }
-  document.getElementById("display-time").value = displayTime;
+  document.getElementById("display-time").value = localStorage["displayTime"];
+  document.getElementById("poll-interval").value = localStorage["pollInterval"];
 }
 
 </script>
@@ -30,6 +27,10 @@ function restore_options() {
 <label for="display-time">Display Time</label>
 <input id="display-time" type="text"/>
 <p>Time (in seconds) the notification stays on screen.</p>
+
+<label for="poll-interval">Poll Interval</label>
+<input id="poll-interval" type="text"/>
+<p>Time (in seconds) between checking for a track change.</p>
 
 <br>
 <button onclick="save_options()">Save</button>
