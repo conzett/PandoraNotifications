@@ -28,4 +28,4 @@ function CheckForChange() {
 	}	
 }
 
-checkTimer = setInterval ( "CheckForChange()", 2000 );
+checkTimer = setInterval ( "CheckForChange()",  (localStorage["pollInterval"] * 1000) );
