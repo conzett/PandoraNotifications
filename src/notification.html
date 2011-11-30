@@ -34,12 +34,12 @@ img {
 }
 
 #art{
-	height:60px;
+	width:60px;
 	box-shadow: 1px 1px 4px 0px #000000;
 }
 
 ul {
-	text-shadow: 0px -2px 0px #000000;
+	text-shadow: 0px -1px 0px #000000;
 	font-size:12px;
 	margin-left: 68px;
 	padding: 0;
@@ -52,6 +52,10 @@ ul li {
 	white-space: nowrap;
 	overflow :hidden;
 	text-overflow: ellipsis;
+}
+
+.song {
+	font-weight : bold;
 }
 
 </style>
@@ -72,7 +76,7 @@ ul li {
 		content += '<img id="thumb" src="../images/thumb.png"/>';
 	}
 
-	content +='<img id="art" src="'+ getParam('art') + '"/><ul><li>'
+	content +='<img id="art" src="'+ getParam('art') + '"/><ul><li class="song">'
 		+ unescape(getParam('song')) + '</li><li>by ' + unescape(getParam('artist')) + '</li><li>on ' + unescape(getParam('album')) + '</li></ul><div>';
 
 	document.getElementById('target').innerHTML = content;

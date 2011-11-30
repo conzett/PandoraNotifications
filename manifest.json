@@ -1,6 +1,6 @@
 {"name": "Pandora Desktop Notification",
-  "version": "1.1",
-  "description": "Pop-up notifications for Pandora's HTML application using Webkit's HTML5 desktop notification API",
+  "version": "1.2",
+  "description": "Pop-up notifications for Pandora on your desktop",
   "icons": { },
   "default_locale": "en",
   "permissions": [
