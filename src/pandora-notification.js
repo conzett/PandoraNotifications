@@ -7,7 +7,7 @@ function Request(artSRC) {
 	
     _song = document.getElementsByClassName("playerBarSong")[0].textContent;
 
-    if(_song != "ad" && _song != "audload"){
+    if(_song != "ad" && _song != "audioad"){
 
 	    _artist = document.getElementsByClassName("playerBarArtist")[0].textContent;
 	    _album = document.getElementsByClassName("playerBarAlbum")[0].textContent;

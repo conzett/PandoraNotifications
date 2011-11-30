@@ -1,22 +1,80 @@
 <html>
-<head><title>Pandora Notification Options</title></head>
+<head><title>Pandora Notification Options</title>
+
+</head>
+
+<style>
+
+body {
+	font-family: arial, helvetica, sans-serif;
+	font-size: 12px;
+	margin: 20px;
+}
+
+h1 {
+	color: darkGray;
+	font-size: 20px;
+	line-height: 20px;
+	margin-bottom: 20px;
+}
+
+input, label {
+	display : inline-block;
+}
+
+label {
+	width : 80px;
+}
+
+#container {
+	width : 430px;
+}
+
+fieldset {
+	border: 1px solid lightGray;
+	border-radius: 8px;
+	margin-bottom:20px;
+}
+
+button {
+	float : right;
+}
+
+p{
+	line-height : 22px;
+}
+
+hr {
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid lightGray;
+}
+
+#status {
+	float : right;
+	color : green;
+	font-size: bold;
+	line-height : 22px;
+	padding-right: 10px;
+}
+
+</style>
+
 <script type="text/javascript">
 
 function save_options() {
   localStorage["displayTime"] = document.getElementById("display-time").value;
   localStorage["pollInterval"] = document.getElementById("poll-interval").value;
 
-  // Update status to let user know options were saved.
   var status = document.getElementById("status");
   status.innerHTML = "Options Saved.";
   setTimeout(function() {
     status.innerHTML = "";
-  }, 750);
+  }, 1500);
 
 
 }
 
-// Restores select box state to saved value from localStorage.
 function restore_options() {
   document.getElementById("display-time").value = localStorage["displayTime"];
   document.getElementById("poll-interval").value = localStorage["pollInterval"];
@@ -26,15 +84,34 @@ function restore_options() {
 
 <body onload="restore_options()">
 
-<label for="display-time">Display Time</label>
+<div id="container">
+<h1>Pandora Notification Options</h1>
+
+<fieldset>
+<legend>General</legend>
+
+<div>
+<label for="display-time" title="Time (in seconds) the notification stays on screen.">Display Time</label>
 <input id="display-time" type="text" value="5"/>
-<p>Time (in seconds) the notification stays on screen.</p>
+</div>
 
-<label for="poll-interval">Poll Interval</label>
+</fieldset>
+<hr/>
+<fieldset>
+<legend>Advanced</legend>
+
+<div>
+<label for="poll-interval" title="Time (in seconds) between checking for a track change.">Poll Interval</label>
 <input id="poll-interval" type="text" value="2"/>
-<p>Time (in seconds) between checking for a track change.</p>
+</div>
 
-<br>
-<button onclick="save_options()">Save</button>
+</fieldset>
+
+<button onclick="save_options()">Save Options</button>
+<span id="status"></span>
+</div>
+
+<p><a href="https://github.com/conzett/PandoraNotifications/issues">Suggest more options on Github</a></p>
+
 </body>
 </html>
