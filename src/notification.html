@@ -9,19 +9,33 @@
 html {
 	height :76px;
 	-webkit-box-shadow: inset 0px 0px 10px 0px #000000;
+	background-color: #333333;
+	background-size: auto 30px;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 
 body {
-	background: #333333;
+	
 	color: white;
 	font-family: arial, helvetica, sans-serif;
 	margin : 8px;
 }
 
-img{
-	box-shadow: 1px 1px 4px 0px #000000;
-	height:60px;
+img {	
 	position : absolute;
+}
+
+#thumb {
+	z-index: 10;
+	height: 44px;
+	right : 8px;
+	top: 16px;
+}
+
+#art{
+	height:60px;
+	box-shadow: 1px 1px 4px 0px #000000;
 }
 
 ul {
@@ -43,6 +57,9 @@ ul li {
 </style>
 
 <script>
+
+	var content = '<div id="content">';
+
 	function getParam( varname ) {
 	    varname = varname.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
 	    var regexS = "[\\?&]"+varname+"=([^&#]*)";
@@ -51,7 +68,11 @@ ul li {
 	    if( results == null ) return ""; else return results[1];
 	}
 
-	var content ='<div id="content"><img src="'+ getParam('art') + '"/><ul><li>'
+	if(unescape(getParam('thumb')) == 'true'){
+		content += '<img id="thumb" src="../images/thumb.png"/>';
+	}
+
+	content +='<img id="art" src="'+ getParam('art') + '"/><ul><li>'
 		+ unescape(getParam('song')) + '</li><li>by ' + unescape(getParam('artist')) + '</li><li>on ' + unescape(getParam('album')) + '</li></ul><div>';
 
 	document.getElementById('target').innerHTML = content;

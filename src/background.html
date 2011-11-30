@@ -9,7 +9,7 @@ chrome.extension.onRequest.addListener(
                 "received request from the extension");
 
     if (request.greeting == "song-change"){
-		var url = 'notification.html?art=' + request.art + '&song=' + request.song + '&artist=' + request.artist + '&album=' +request.album; 
+		var url = 'notification.html?art=' + request.art + '&song=' + request.song + '&artist=' + request.artist + '&album=' +request.album + '&thumb=' + request.thumb; 
         var notification = webkitNotifications.createHTMLNotification(url);
         console.log("show notification");
         notification.show();

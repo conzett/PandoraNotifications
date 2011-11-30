@@ -1,14 +1,23 @@
 var currentArtSRC;
 var polledArtSRC;
 var pollInterval = 1000;
+var i;
 
 function Request(artSRC) {
 	
     _song = document.getElementsByClassName("playerBarSong")[0].textContent;
     _artist = document.getElementsByClassName("playerBarArtist")[0].textContent;
     _album = document.getElementsByClassName("playerBarAlbum")[0].textContent;
+	classList = document.getElementsByClassName("thumbUpButton")[0].classList;
+	_thumb = false;
 
-    chrome.extension.sendRequest({greeting: "song-change", art : artSRC, artist : _artist, album : _album, song : _song}, function(response) {
+	for(i=0; i < classList.length; i++ ){
+		if(classList[i] === 'indicator'){
+			_thumb = true;
+		}
+	}
+
+    chrome.extension.sendRequest({greeting: "song-change", art : artSRC, artist : _artist, album : _album, song : _song, thumb : _thumb}, function(response) {
         console.log("Pandora Notifications - " + response.farewell);
         pollInterval = (response.pollInterval * 1000);
     });
