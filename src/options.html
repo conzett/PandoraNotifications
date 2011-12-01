@@ -76,8 +76,8 @@ function save_options() {
 }
 
 function restore_options() {
-  document.getElementById("display-time").value = localStorage["displayTime"];
-  document.getElementById("poll-interval").value = localStorage["pollInterval"];
+  document.getElementById("display-time").value = localStorage["displayTime"] || 5;
+  document.getElementById("poll-interval").value = localStorage["pollInterval"] || 1;
 }
 
 </script>
@@ -92,7 +92,7 @@ function restore_options() {
 
 <div>
 <label for="display-time" title="Time (in seconds) the notification stays on screen.">Display Time</label>
-<input id="display-time" type="text" value="5"/>
+<input id="display-time" type="text"/>
 </div>
 
 </fieldset>
@@ -102,7 +102,7 @@ function restore_options() {
 
 <div>
 <label for="poll-interval" title="Time (in seconds) between checking for a track change.">Poll Interval</label>
-<input id="poll-interval" type="text" value="2"/>
+<input id="poll-interval" type="text"/>
 </div>
 
 </fieldset>
