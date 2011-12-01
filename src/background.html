@@ -1,6 +1,6 @@
 <script>
 
-var pollInterval = localStorage["pollInterval"];
+var pollInterval = localStorage["pollInterval"] || 2;
 
 chrome.extension.onRequest.addListener(
   function(request, sender, sendResponse) {
@@ -13,7 +13,7 @@ chrome.extension.onRequest.addListener(
         var notification = webkitNotifications.createHTMLNotification(url);
         console.log("show notification");
         notification.show();
-        var time = (localStorage["displayTime"] * 1000);
+        var time = ((localStorage["displayTime"] || 5) * 1000);
         setTimeout(function(){notification.cancel();}, time);
 
         sendResponse({farewell: "Notification Successful", pollInterval: pollInterval});
