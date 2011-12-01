@@ -1,7 +1,9 @@
 {"name": "Pandora Desktop Notification",
   "version": "1.2",
   "description": "Pop-up notifications for Pandora on your desktop",
-  "icons": { },
+  "icons": {"16": "icons/icon16.png",
+             "48": "icons/icon48.png",
+            "128": "icons/icon128.png"},
   "default_locale": "en",
   "permissions": [
     "notifications"
