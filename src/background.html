@@ -11,12 +11,14 @@ chrome.extension.onRequest.addListener(
     if (request.greeting == "song-change"){
 		var url = 'notification.html?art=' + request.art + '&song=' + request.song + '&artist=' + request.artist + '&album=' +request.album + '&thumb=' + request.thumb; 
         var notification = webkitNotifications.createHTMLNotification(url);
-        //console.log("show notification");
-	notification.onclick = function() {
-		notification.cancel();
-		chrome.tabs.update(sender.tab.id, {active: true});
-	}
-	notification.show();
+
+    	notification.onclick = function() {
+    		notification.cancel();
+    		chrome.tabs.update(sender.tab.id, {active: true});
+    	}
+        
+    	notification.show();
+
         var time = ((localStorage["displayTime"] || 5) * 1000);
         setTimeout(function(){notification.cancel();}, time);
 
